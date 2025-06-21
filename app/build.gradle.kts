@@ -1,6 +1,5 @@
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
+    alias(libs.plugins.android.application)
 }
 
 
@@ -12,15 +11,15 @@ android {
         applicationId = "com.app.myworker"
         minSdk = 21
         targetSdk = 34
-        versionCode = 7
-        versionName = "6.7"
+        versionCode = 8
+        versionName = "8.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -39,10 +38,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-
-    // ✅ Facebook Android SDK
-    implementation("com.facebook.android:facebook-android-sdk:latest.release") // ✅ Facebook SDK
-
+    implementation("com.facebook.android:facebook-android-sdk:16.3.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

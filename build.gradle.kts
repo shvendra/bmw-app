@@ -2,6 +2,3 @@
 plugins {
     alias(libs.plugins.android.application) apply false
 }
-dependencies {
-    implementation("com.facebook.android:facebook-android-sdk:16.3.0")
-}

@@ -1,6 +1,8 @@
 plugins {
-    alias(libs.plugins.android.application)
+    id("com.android.application")
+    id("kotlin-android")
 }
+
 
 android {
     namespace = "com.app.myworker"

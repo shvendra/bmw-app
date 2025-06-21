@@ -29,13 +29,22 @@
         android:theme="@style/Theme.WebViewProject"
         tools:targetApi="31">
 
-        <!-- ✅ Facebook SDK Meta-Data -->
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
-        <meta-data
-            android:name="com.facebook.sdk.ClientToken"
-            android:value="@string/facebook_client_token" />
+    <!-- Facebook SDK App ID -->
+    <meta-data
+        android:name="com.facebook.sdk.ApplicationId"
+        android:value="@string/facebook_app_id" />
+
+    <!-- Facebook SDK Activity -->
+    <activity
+        android:name="com.facebook.FacebookActivity"
+        android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+        android:label="@string/app_name" />
+
+    <!-- Facebook ContentProvider -->
+    <provider
+        android:name="com.facebook.FacebookContentProvider"
+        android:authorities="com.facebook.app.FacebookContentProvider.978713600892287"
+        android:exported="true" />
 
         <!-- ✅ Your Existing Main Activity -->
         <activity

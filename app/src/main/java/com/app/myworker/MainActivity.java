@@ -18,7 +18,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
-
+import android.webkit.WebResourceRequest; // ✅ ADD THIS
+import android.webkit.WebResourceResponse; // ✅ ADD THIS
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
 
-                return false; // Load all other URLs inside the WebView
+                return false;
             }
 
             @Override
@@ -68,7 +69,23 @@ public class MainActivity extends AppCompatActivity {
                 super.onPageFinished(view, url);
                 Log.d("WEBVIEW_URL", "Loaded URL: " + url);
             }
+
+            @Override
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                // Show local error page
+                view.loadUrl("file:///android_asset/no_internet.html");
+            }
+
+            @Override
+            public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    if (request.isForMainFrame()) {
+                        view.loadUrl("file:///android_asset/no_internet.html");
+                    }
+                }
+            }
         });
+
 
 
         // Handle file uploads (if any)
